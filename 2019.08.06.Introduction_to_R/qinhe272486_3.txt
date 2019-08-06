@@ -1,0 +1,33 @@
+#Exercise Pack 3
+#Create a vector z of length 10 with variance equals to 0 and mean equals to 5. Verify with function mean and var.
+z = c(rnorm(10,5,0))
+#Create a function which returns the sum of the maximum and the mininum value of the input vector
+minsummax<- function(){
+	list<- readline(prompt = "enter the experimental integers: ")
+#	InVec <- as.vector(strsplit(list, ","))
+	InVec <- as.vector(strsplit(list, ","))[[1]]
+#	idmi = lapply(InVec, min)
+	idmi = min(InVec)
+	idma = max(InVec)
+	class(idmi)
+	return(as.integer(idmi) + as.integer(idma))
+}
+minsummax()
+
+#Create a function which approximates the sin function with 4th-order taylor series.
+#x-x^3/3!+x^5/5!+x^7/7!
+taylor4_sin<- function(x){
+	return(x-x^3/factorial(3)+x^5/factorial(5)-x^7/factorial(7))
+}
+taylor4_sin(pi/2)
+
+#Compute the CV (coefficient of variation) values of variables Levels and Badges in the steam dataset.
+steam<- read.csv(file = "steam_subset.csv", header = T, sep = ",")
+Badge_var = var(steam$Level)
+Lev_var = var(steam$Level)
+
+#Create a toy data frame object with at least 5 rows and 3 columns, save it to a .csv file.
+toy_dat<- data.frame(Ranks = 1:6, Level = c(17, 55, 0, 16, 52, 27), Buyers = c(1, 2, 0, 1, 4, 2), Comments =c(14, 115, 11, 19, 3, 5))
+write.csv(toy_dat, file = "toy.csv")
+
+
