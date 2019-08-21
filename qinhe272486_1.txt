@@ -1,0 +1,14 @@
+#Exercise Pack 1
+#Calculate the volume of a sphere (ball) whose raduis r=2
+r<- 2
+V<- 4/3*r^3
+#What is 35 degree in Fahrenheit ?
+C<- 35
+F<- 33.8+C
+#Use 5 different ? values to calculate the result of sin(?)^2+cos(?)^2
+theta<- seq(0, pi, pi/4)
+formula<- sin(theta)^2+cos(theta)^2 #It is a fixed value since the sum of the square of sin and square of cos is always 1 
+#In a right triangle with sides a=b=2<c, how long is c? (Use Pythagorean Theorem)
+a<- 2
+b<- 2
+c<- sqrt(a^2 + b^2)

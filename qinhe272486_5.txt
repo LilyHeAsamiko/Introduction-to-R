@@ -1,0 +1,56 @@
+Exercise 5
+(attach the corresponding plots to the email)
+
+#1.Use the dataset airquality. Draw a scattar to show the relationship between variables Ozone and Solar.R. Show the points with  
+# Wind values greater than 9.7 in red, otherwise in black.
+attach(airquality)
+airquality[is.na(airquality)]=0
+#a1<- airquality[Wind>9.7]
+a1<- airquality$Wind > 9.7
+a0<- airquality$Wind <= 9.7
+
+plot(Ozone[a1], Solar.R[a1],type = 'p', col = 1, pch = 19, main = 'Scatter: Ozone v.s. Solar', xlab = 'Ozone', ylab = 'Solar')
+points(Ozone[a0], Solar.R[a0],pch = 19, col = 2)
+
+#2. Make plot to monitor the convergence of the exponential function (ex =?8n=0xnn!) with x=5.
+
+taylor_approx<- function(x){
+  function(N){
+    # TODO
+	return(sum(sapply(0:N, function(n) x^n/factorial(n))))}
+}
+x<- 5
+taylor_approx_N<- taylor_approx(x)
+
+N_vec<- 1:20
+approx_val<- sapply(N_vec, function(N){
+  # TODO
+return(taylor_approx_N(N))
+})
+plot(N_vec, approx_val)
+
+#3.Use the dataset sleep. Put a histogram and a boxplot in one plot to show the overall pattern of the increased sleeping time (variable  extra).
+attach(sleep)
+layout(matrix(c(1,2), 2,1, byrow = TRUE))
+boxplot(extra~ID)
+hist(extra)
+#Use the dataset sleep. Use boxplots to show the difference of the increased sleeping time between two groups.
+attach(sleep)
+boxplot(extra~group)
+#Use the vector islands. Use barplots to disply the area of the 2 smallest islands and the 2 biggest islands. (Hint. you can use  sort(, decreasing = ) to sort a vector.)
+sort(islands, decreasing = TRUE)
+Mat<- as.matrix(c(islands['Timor'], islands['Vancouver'], islands['Africa'], islands['Asia'])) 
+barplot(t(Mat),main='2 smallest and 2 largest islands')
+#Use dataset iris. Make a scatter plot of four variables Sepal.Length, Sepal.Width, Petal.Length and Petal.Width. Show different species in different colors. (e.g. setosa in black, versicolor in red and virginica in green)
+#install.packages("GGally")
+#library(GGally)
+#library(ggplot2)
+attach(iris)
+#ggpairs(iris[,-5], aes(color = Species))
+pairs(iris[,-5], col =c(iris$Species) )
+legend(4,1, legend = c(iris$Species), col = c(1,2,3))
+#Use dataset ChickWeight. From each of the Diet group, select 1 chick (identifier variable Chick). Make a time series plot to show the weight changing over time of the 4 selected chicks, each in one different color. Put a legend on the plot which contains the information of the selected chicks (Diet and Chick) and their corresponding colors
+attach(ChickWeight)
+Chick.subset<- subset(ChickWeight, Chick = 1: 4)
+plot(Chick.subset$Diet~Chick.subset$Time, col = ChickWeight$Chick)
+legend(4,1, legend = c(ChickWeight$Diet, ChickWeight$Chick), col = c(1:4))

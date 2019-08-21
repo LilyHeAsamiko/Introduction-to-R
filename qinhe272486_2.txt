@@ -1,0 +1,32 @@
+Exercise Pack 2
+#Check identical(as.integer(5), 5.0) and as.integer(5.0) == 5, which one is TRUE?
+identical(as.integer(5), 5.0) #false
+
+as.integer(5.0) == 5 #true
+
+#List all object under the current environment. Check the memory used by the first object in the list.
+ls()
+#"a"             "b"             "c"             "C"            
+#"F"             "factorial_pos" "formula"       "r"            
+#"theta"         "V"  
+object.size(a) 
+
+#Check the types of the following objects
+#Inf - Inf
+class(Inf - Inf)
+#Inf + Inf
+class(Inf + Inf)
+#0/0
+class(0/0)
+#sin(Inf)
+class(sin(Inf))
+#Inf/0
+class(Inf/0)
+
+#Complete the following function to compute the area of an ellipse where a and b are the axes.
+ellipse_area<- function(a, b){
+return(pi*a*b)  
+}
+
+ellipse_area(3, 5)
+

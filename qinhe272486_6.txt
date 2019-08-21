@@ -1,0 +1,42 @@
+#Exercise 6
+#Use the dataset iris, calculate the corrlations among variables Sepal.Length, Sepal.Width, Petal.Length and Petal.Width.
+attach(iris)
+cor(iris[,-5])
+
+#Use the dataset iris, calculate the summary statistics of variables Sepal.Length, Sepal.Width, Petal.Length and Petal.Width.
+attach(iris)
+summary(iris[,-5])
+
+#Exploring Centrial Limit Theorem. Generate 100 samples from a poisson distribution (rpois) with parameter ?=2, calculate the mean value out of the 100 samples. Repeate the process 10000 times. Make a histogram of the 10000 mean values. Check the empirical mean and the standard deviation of the 10000 mean values, compare to the theoretical values µ=2 and s=2v10.
+Pois<- rpois(100, 2)
+Pmean<- mean(Pois)
+#P<- rep(0, 10000)
+#for (n in range(10000)){
+#set.seed(123)
+#Pois<- rpois(100, 2)
+#P[n]<- mean(Pois)}
+RPS<- replicate(10000, rpois(100, 2))
+#Compare with: µ=2 and s=2v10
+P_mu<- mean(RPS)
+P_sigma<- sd(RPS)
+P_mu == 2  
+P_sigma == sqrt(2)/10
+#Use the dataset sleep, conduct a statistical test of the hypothesis that there is no difference of the increased slepping hours between two groups. The significant level a=0.05. (Hint: paired = T).
+attach(sleep)
+levels(group)
+t.test(sleep$extra[group == "1"], sleep$extra[group == "2"], pair = T)
+#They are significantly of same mean
+
+#Use the dataset chickwts, conduct a statistical test of the hypothesis that the feed type doesn’t affect the weight of chicks.
+attach(chickwts)
+aov_res<- aov(chickwts$weight~chickwts$feed) 
+summary(aov_res)
+# weight is significantly relevant to feed
+
+#Use the dataset cars, build a linear model to examine how the speed (speed) affacts the stopping distance (dist).
+attach(cars)
+lm_res<- lm(dist~speed)
+summary(lm_res)
+lm_step<- step(lm_res)
+summary(lm_step)
+# dist~3.9324*speed-17.5791 significantly relevant

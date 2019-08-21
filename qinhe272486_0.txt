@@ -1,0 +1,25 @@
+# Exercise 0
+Fact<- factorial(5)
+
+#factorial_pos <- function(x){
+	if (x > 1){
+		return(x*factorial_pos(x-1))
+	}
+	if(x == 1)
+		return(x)
+	else 
+		return(1)
+}
+
+factorial_pos(5)
+
+Exercise Pack 0
+#Check your current directory with the function getwd.
+getwd()
+
+#Change your working directory to your desktop and list all the file/folders
+setwd("Desktop")
+dir()
+
+
+q()# quit

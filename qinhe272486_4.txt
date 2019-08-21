@@ -1,0 +1,86 @@
+Exercise Pack 4
+#Note. lubridate::hour(Sys.time()) returns the current hour (0-24).
+Use conditional statement to complete the following greeting function. The function prints "good morning", "good afternoon",  "good evening" or "good night" according to the current hour.
+greeting<- function(hour = as.numeric(format(strptime(Sys.time(), "%Y-%m-%d %H:%M:%S") , "%H"))){
+	if(hour > 3 && hour < 10){
+		print("good morning")
+}
+	if(hour > 12 && hour < 17){
+		print("good afternoon")
+}
+	if(hour > 16 && hour < 23){
+		print("good evening")
+}
+	if(hour > 22 && hour < 2){
+		print("good night")
+}
+	
+}
+
+greeting()
+Note. lubridate::hour(Sys.time()) returns the current hour (0-24).
+
+Write a for loop to sum up all the elements of a vector, compare the result of simply using the function sum. Use the function  Sys.time() to record the time, for example:
+x<- 1:1000
+start_t1<- Sys.time()
+x_sum = 0
+for(i in x){
+	x_sum = x_sum + x[i]
+}
+end_t1<- Sys.time()
+time1 = end_t1 - start_t1
+
+start_t2<- Sys.time()
+sum(x)
+end_t2<- Sys.time()
+time2 = end_t2 - start_t2
+if(time1 > time2){
+	print("time1 in summing by for loop takes longer")
+}else{
+	print("time2 in summing by for sum function takes longer")
+}
+
+#Write a loop to print out all the prime numbers smaller than 50.
+prime = 1
+for (i in 2:50){
+	for (n in 2:(i-1)){
+		if (i % (n+1) != 0){
+			prime = 0
+			break		
+		}
+	}
+	if (prime == 1){
+		print("%D is a prime amaller than 50: ", i)
+	} 
+}
+#Make an operator %$>€% to detect if the amount of money of the left hand side is greater than the right hand side. Where the left hand side is holding US dollars ($) and the right hand side is holding Euros (€). The exchange rate is 1€ = 1.1$.
+= 1.1$.
+"%$>€%"<- function(a, b){
+	if (1.1*b > a){
+		try(cat(sprintf("%f $ < %f €", a, b)))
+		return (FALSE)
+	}
+	if (1.1*b < a){
+		try(cat(sprintf("%f $ > %f €", a, b)))
+		return (TRUE)
+	}
+	if (1.1*b == a){
+		try(cat(sprintf("%f $ = %f €", a, b)))
+		return (FALSE)
+	}
+}
+5.0 %$>€% 4.3
+#Use apply to compute the coefficient of variation (CV) of each column in the steam dataset.
+steam<- read.csv(file = "steam_subset.csv", header = T, sep = ",")
+namelist = names(steam)
+col_var = rep(0, length(steam))
+for (i in 1:length(steam)){
+	col_var[i]<- var(steam[i])
+	cat(sprintf("The CV of %s is %f \n", namelist[i], col_var[i]))
+}
+
+
+#Use sapply to calcluate the object size of all the objects under current environment. Hint: you will need functions ls() and  object.size().
+objects<- ls()
+for (obj in objects) {
+cat(sprintf("object %s size: %d \n", obj, object.size(obj)))}
